@@ -72,7 +72,7 @@ function Result() {
     return (
         <div>
             {fileList && (
-                <>
+                <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignContent:'center',marginLeft:'25%',marginTop:'1%'}}>
                     <div
                         style={{
                             width:"50vw",
@@ -133,7 +133,7 @@ function Result() {
                             }} src={`data:image/png;base64,${yolo}`} alt="Uploaded" />
                         </div>
                     </div>
-                </>
+                </div>
             )}
         </div>
     )
