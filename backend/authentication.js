@@ -29,7 +29,8 @@ app.post('/login',async (req,res)=>{
     )
     user.refreshToken = refreshtoken
     await user.save()
-    res.cookie('jwt', refreshtoken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000 });
+    // res.cookie('jwt', refreshtoken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000 });
+    res.cookie('jwt', refreshtoken, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
     res.send({accesstoken});
 })
 
@@ -78,12 +79,12 @@ app.get('/logout',async (req,res)=>{
   const decodedToken = jwt.decode(token);
   let user = await User.findOne({refreshToken:decodedToken.refreshToken})
   if(!user){
-      res.clearCookie('jwt',{httpOnly:true,sameSite:'None',secure:true,maxAge: 3* 24 * 60 * 60 * 1000});
+      res.clearCookie('jwt',{httpOnly:true,maxAge: 3* 24 * 60 * 60 * 1000});
       return res.sendStatus(204);
   }
   user.refreshToken='';
   await user.save();
-  res.clearCookie('jwt',{httpOnly:true,sameSite:'None',secure:true,maxAge:3* 24 * 60 * 60 * 1000});
+  res.clearCookie('jwt',{httpOnly:true,maxAge:3* 24 * 60 * 60 * 1000});
   return res.sendStatus(204);
 })
 
