@@ -14,8 +14,8 @@ const HomePage = () => {
   
   const wrapperRef = useRef(null);
   const [fileList, setFileList] = useState(null);
-  // const call = "http://localhost:3001";
-  const call = "https://c362-2405-201-c00e-5edf-8171-b4a0-263-c1db.ngrok-free.app";
+  const call = "http://localhost:3001";
+  // const call = "https://c362-2405-201-c00e-5edf-8171-b4a0-263-c1db.ngrok-free.app";
   const onFileDrop = (e) => {
     const newFile = e.target.files[0];
     const reader = new FileReader();
